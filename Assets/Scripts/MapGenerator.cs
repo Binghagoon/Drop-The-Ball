@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
-
-
 	[SerializeField]
-	public GameObject wall;     //1 by 1 wall
+	public GameObject map;
+	[SerializeField]
+	public GameObject wall;
+	[SerializeField]
+	public GameObject empty;
+	[SerializeField]
+	public GameObject ballSpawnPoint;
+	[SerializeField]
+	public GameObject goalSpawnPoint;
+	[SerializeField]
+	public GameObject ball;
+	[SerializeField]
+	public GameObject goal;
 	string mapBinary;
 
+	private int goalNum = 0;
+	public int GoalNum { get { return goalNum; } }
+
 	// Use this for initialization
-	void Start () {
+	public void Generate() {
 		mapBinary = ReadMapBySystem("test");
 		GenerateMap(mapBinary);
 	}
@@ -20,7 +33,7 @@ public class MapGenerator : MonoBehaviour {
 	{
 		try
 		{
-			string data = System.IO.File.ReadAllText("../Resources/Maps/" + stage + ".dat");
+			string data = System.IO.File.ReadAllText("Assets/Resources/Maps/" + stage + ".dat");
 			Debug.Log("Successed to extract this stage!");
 			return data;
 		}
@@ -34,16 +47,62 @@ public class MapGenerator : MonoBehaviour {
 
 	void GenerateMap(string mapBin)
 	{
-		int x, y;
+		int x = 0, y = 0;
 		char c;
-		x = mapBin
+		string[] lineMapBin = mapBin.Split('\n');
+		foreach(string bin in lineMapBin)
+		{
+			foreach(char b in bin)
+			{
+				GameObject spn = null;
+				switch(b)
+				{
+					case '0':
+						spn = empty;
+						break;
+					case '1':
+						spn = wall;
+						break;
+					case '@':
+						spn = ballSpawnPoint;
+						break;
+					case '&':
+						spn = goalSpawnPoint;
+						break;
+					case '\r':
+						spn = empty;
+						break;
+				}
+				if (spn == null)
+					Debug.Log("There is no spawned object");
+				else if(spn != empty)
+					Instantiate(spn, new Vector3(x, 0, y), new Quaternion(), map.GetComponent<Transform>());
+				x++;
+			}
+			x = 0;
+			y++;
+		}
+		Transform[] childList = map.transform.GetComponentsInChildren<Transform>();
+		int p = 0, q = 0;
+		foreach(Transform child in childList)
+		{
+			if(child.name.Contains("BallSpawnPoint"))
+			{
+				Instantiate(ball, child.position, child.rotation);
+				p++;
+			}
+			else if(child.name.Contains("GoalSpawnPoint"))
+			{
+				Instantiate(goal, child.position, child.rotation);
+				q++;
+			}
+		}
+		if (p != q)
+			Debug.Log("The numbers of balls and goals do not match.");
+		else
+			goalNum = p;
 	}
 
-	void GenerateWall(Vector2 pos)
-	{
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		
