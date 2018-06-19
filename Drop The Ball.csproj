@@ -285,7 +285,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameRuleManager.cs" />
     <Compile Include="Assets\Scripts\GameUIManager.cs" />
+    <Compile Include="Assets\Scripts\Goal.cs" />
     <Compile Include="Assets\Scripts\MainButtonEvent.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\PlayerMovementManager.cs" />
