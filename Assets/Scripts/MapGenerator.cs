@@ -24,8 +24,9 @@ public class MapGenerator : MonoBehaviour {
 	public int GoalNum { get { return goalNum; } }
 
 	// Use this for initialization
-	public void Generate() {
-		mapBinary = ReadMapBySystem("test");
+	public void Generate(int lv1, int lv2) 
+	{
+		mapBinary = ReadMapBySystem(lv1.ToString() + "-" + lv2.ToString());
 		GenerateMap(mapBinary);
 	}
 
@@ -33,7 +34,7 @@ public class MapGenerator : MonoBehaviour {
 	{
 		try
 		{
-			string data = System.IO.File.ReadAllText("Assets/Resources/Maps/" + stage + ".dat");
+			string data = System.IO.File.ReadAllText("Assets/Resources/Maps/" + stage + ".txt");
 			Debug.Log("Successed to extract this stage!");
 			return data;
 		}

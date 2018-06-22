@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameRuleManager : MonoBehaviour {
 
 	int goalNum = 0;
+	static public int gameLv1 = 1;
+	static public int gameLv2 = 1;
 	void SetCameraPosition()
 	{
 		return;
@@ -23,7 +25,7 @@ public class GameRuleManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		MapGenerator mapGenerator = GetComponent<MapGenerator>();
-		mapGenerator.Generate();
+		mapGenerator.Generate(gameLv1, gameLv2);
 		goalNum = mapGenerator.GoalNum;
 
 		

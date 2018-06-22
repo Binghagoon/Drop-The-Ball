@@ -285,12 +285,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BallBalanceManager.cs" />
     <Compile Include="Assets\Scripts\GameRuleManager.cs" />
     <Compile Include="Assets\Scripts\GameUIManager.cs" />
     <Compile Include="Assets\Scripts\Goal.cs" />
     <Compile Include="Assets\Scripts\MainButtonEvent.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\PlayerMovementManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Resources\Maps\1-1.txt" />
+    <None Include="Assets\Resources\Maps\1-2.txt" />
+    <None Include="Assets\Resources\Maps\1-3.txt" />
+    <None Include="Assets\Resources\Maps\2-1.txt" />
+    <None Include="Assets\Resources\Maps\2-2.txt" />
+    <None Include="Assets\Resources\Maps\2-3.txt" />
+    <None Include="Assets\Resources\Maps\2-4.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
