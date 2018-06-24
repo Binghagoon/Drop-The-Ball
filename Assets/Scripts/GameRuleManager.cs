@@ -12,7 +12,7 @@ public class GameRuleManager : MonoBehaviour {
 		return;
 	}
 
-	public void GoalDelete()
+	public void GoalChecked()
 	{
 		goalNum--;
 		if(goalNum == 0)		// The scripts when game ends
@@ -20,6 +20,11 @@ public class GameRuleManager : MonoBehaviour {
 			Debug.Log("The game is end.");
 			return;
 		}
+	}
+
+	public void GoalUnChecked()
+	{
+		goalNum++;
 	}
 
 	// Use this for initialization

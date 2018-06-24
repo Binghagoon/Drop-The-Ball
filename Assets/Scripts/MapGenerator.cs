@@ -49,7 +49,6 @@ public class MapGenerator : MonoBehaviour {
 	void GenerateMap(string mapBin)
 	{
 		int x = 0, y = 0;
-		char c;
 		string[] lineMapBin = mapBin.Split('\n');
 		foreach(string bin in lineMapBin)
 		{

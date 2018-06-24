@@ -285,7 +285,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BallBalanceManager.cs" />
     <Compile Include="Assets\Scripts\GameRuleManager.cs" />
     <Compile Include="Assets\Scripts\GameUIManager.cs" />
     <Compile Include="Assets\Scripts\Goal.cs" />

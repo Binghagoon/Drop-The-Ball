@@ -77,4 +77,11 @@ public class PlayerMovementManager : MonoBehaviour {
 		else
 			time += Time.deltaTime;
 	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.transform.name.Contains("Goal")) return;
+
+		GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+	}
 }

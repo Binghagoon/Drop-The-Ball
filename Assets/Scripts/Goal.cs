@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour {
 
+	Mesh Capsule;
 	// Use this for initialization
 	void Start () {
-		
+		Capsule = GetComponent<MeshFilter>().mesh;
 	}
 	
 	// Update is called once per frame
@@ -14,12 +15,25 @@ public class Goal : MonoBehaviour {
 		
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	void OnTriggerEnter(Collider collider)
 	{
-		if(collision.transform.name.Contains("Ball"))
+		if(collider.transform.name.Contains("Ball"))
 		{
-			GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalDelete();
-			Destroy(gameObject);
+			GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalChecked();
+			//Destroy(gameObject);
+			GetComponent<MeshFilter>().mesh = null;
+			//GetComponent<CapsuleCollider>().enabled = false;
+		}
+	}
+
+	void OnTriggerExit(Collider collider)
+	{
+		if(collider.transform.name.Contains("Ball"))
+		{
+			GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalUnChecked();
+			//Destroy(gameObject);
+			GetComponent<MeshFilter>().mesh = Capsule;
+			GetComponent<CapsuleCollider>().enabled = true;
 		}
 	}
 }
