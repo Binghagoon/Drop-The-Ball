@@ -57,7 +57,7 @@ public class MapGenerator : MonoBehaviour {
 				GameObject spn = null;
 				switch(b)
 				{
-					case '0':
+					case '`':
 						spn = empty;
 						break;
 					case '1':
