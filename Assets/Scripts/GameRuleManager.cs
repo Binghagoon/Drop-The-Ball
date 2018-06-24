@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class GameRuleManager : MonoBehaviour {
 
-	int goalNum = 0;
+	static int ballNum = 0;
 	static public int gameLv1 = 1;
 	static public int gameLv2 = 1;
+	static GameObject[] balls;
+	static GameObject[] goals;
+
+	public static int GetBallNum() { return ballNum; }
+	public static GameObject GetBallObject(int index) { return balls[index]; }
+	public static GameObject GetGoalObject(int index) { return goals[index]; }
+
 	void SetCameraPosition()
 	{
 		return;
@@ -14,8 +21,8 @@ public class GameRuleManager : MonoBehaviour {
 
 	public void GoalChecked()
 	{
-		goalNum--;
-		if(goalNum == 0)		// The scripts when game ends
+		ballNum--;
+		if(ballNum == 0)		// The scripts when game ends
 		{
 			Debug.Log("The game is end.");
 			return;
@@ -24,15 +31,16 @@ public class GameRuleManager : MonoBehaviour {
 
 	public void GoalUnChecked()
 	{
-		goalNum++;
+		ballNum++;
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		MapGenerator mapGenerator = GetComponent<MapGenerator>();
 		mapGenerator.Generate(gameLv1, gameLv2);
-		goalNum = mapGenerator.GoalNum;
-
+		ballNum = mapGenerator.GoalNum;
+		goals = GameObject.FindGameObjectsWithTag("Goal");
+		balls = GameObject.FindGameObjectsWithTag("Ball");
 		
 	}
 	

@@ -9,28 +9,34 @@ public class GameUIManager : MonoBehaviour {
 	Text XText, YText, ZText;
 	GameObject canvas;
 	[SerializeField]
-	Image ballImg;
+	GameObject ballImg;
+	GameObject[] ballImgs;
 
 	void Start () {
 		XText = GameObject.Find("XRateText").GetComponent<Text>();
 		YText = GameObject.Find("YRateText").GetComponent<Text>();
 		ZText = GameObject.Find("ZRateText").GetComponent<Text>();
 		canvas = GameObject.Find("Canvas");
+		ballImgs = new GameObject[GameRuleManager.GetBallNum()];
+
+		for (int i = 0; i < GameRuleManager.GetBallNum(); i++)
+		{
+			ballImgs[i] = Instantiate(ballImg, canvas.transform);
+		}
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		Vector3 ballPos = Camera.main.WorldToViewportPoint(GameObject.Find("Ball(Clone)").transform.position);
-		RectTransform CanvasRect = canvas.GetComponent<RectTransform>();
-		ballPos.x = ballPos.x * CanvasRect.sizeDelta.x - CanvasRect.sizeDelta.x * 0.5f;
-		ballPos.y = ballPos.y * CanvasRect.sizeDelta.y - CanvasRect.sizeDelta.y * 0.5f;
-		ballImg.rectTransform.anchoredPosition = ballPos;
-		
+		for (int i = 0; i < ballImgs.Length; i++)
+			HangImgOnScreen(GameRuleManager.GetBallObject(i), ballImgs[i].GetComponent<Image>());
 	}
 
-	void HangObjOnScreen()
+	void HangImgOnScreen(GameObject obj, Image img)
 	{
-		
+		Vector3 objPos = Camera.main.WorldToViewportPoint(obj.transform.position);
+		RectTransform CanvasRect = canvas.GetComponent <RectTransform>();
+		objPos.x = objPos.x * CanvasRect.sizeDelta.x - CanvasRect.sizeDelta.x * 0.5f;
+		objPos.y = objPos.y * CanvasRect.sizeDelta.y - CanvasRect.sizeDelta.y * 0.5f;
+		img.rectTransform.anchoredPosition = objPos;
 	}
 
 	

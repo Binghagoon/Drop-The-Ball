@@ -88,12 +88,12 @@ public class MapGenerator : MonoBehaviour {
 		{
 			if(child.name.Contains("BallSpawnPoint"))
 			{
-				Instantiate(ball, child.position, child.rotation);
+				Instantiate(ball, child.position, child.rotation).tag = "Ball";
 				p++;
 			}
 			else if(child.name.Contains("GoalSpawnPoint"))
 			{
-				Instantiate(goal, child.position, child.rotation);
+				Instantiate(goal, child.position, child.rotation).tag = "Goal";
 				q++;
 			}
 		}
