@@ -12,12 +12,12 @@ public class GameRuleManager : MonoBehaviour {
 
 	public static int GetBallNum() { return ballNum; }
 	public static GameObject GetBallObject(int index) { return balls[index]; }
+	public static GameObject[] GetBallObject() { return balls; }
 	public static GameObject GetGoalObject(int index) { return goals[index]; }
+	public static GameObject[] GetGoalObject() { return goals; }
 
-	void SetCameraPosition()
-	{
-		return;
-	}
+	//Deprecated.
+	void SetCameraPosition() { return; }
 
 	public void GoalChecked()
 	{
@@ -25,6 +25,11 @@ public class GameRuleManager : MonoBehaviour {
 		if(ballNum == 0)		// The scripts when game ends
 		{
 			Debug.Log("The game is end.");
+			FindObjectOfType<GameUIManager>().LoadGameEndUI();
+			foreach(GameObject obj in balls)
+			{
+				obj.SetActive(false);
+			}
 			return;
 		}
 	}

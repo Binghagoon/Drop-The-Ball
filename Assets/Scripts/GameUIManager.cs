@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Attached to canvas
 public class GameUIManager : MonoBehaviour {
 
 	const string prefix = "rate: "; 
@@ -11,12 +12,14 @@ public class GameUIManager : MonoBehaviour {
 	[SerializeField]
 	GameObject ballImg;
 	GameObject[] ballImgs;
+	[SerializeField]
+	GameObject fin;
 
 	void Start () {
-		XText = GameObject.Find("XRateText").GetComponent<Text>();
-		YText = GameObject.Find("YRateText").GetComponent<Text>();
-		ZText = GameObject.Find("ZRateText").GetComponent<Text>();
-		canvas = GameObject.Find("Canvas");
+		XText = transform.Find("XRateText").GetComponent<Text>();
+		YText = transform.Find("YRateText").GetComponent<Text>();
+		ZText = transform.Find("ZRateText").GetComponent<Text>();
+		canvas = this.gameObject;
 		ballImgs = new GameObject[GameRuleManager.GetBallNum()];
 
 		for (int i = 0; i < GameRuleManager.GetBallNum(); i++)
@@ -45,5 +48,11 @@ public class GameUIManager : MonoBehaviour {
 		XText.text = "X" + prefix + Xrate.ToString();
 		YText.text = "Y" + prefix + Yrate.ToString();
 		ZText.text = "Z" + prefix + Zrate.ToString();
+	}
+
+	public void LoadGameEndUI()
+	{
+		fin.transform.SetAsLastSibling();
+		fin.SetActive(true);
 	}
 }
