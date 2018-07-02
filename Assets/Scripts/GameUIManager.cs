@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Attached to canvas
+//Must be attached to canvas
 public class GameUIManager : MonoBehaviour {
 
-	const string prefix = "rate: "; 
-	Text XText, YText, ZText;
-	GameObject canvas;
+	Text XText, YText, ZText;		//Shows forces of accelerometer
+	GameObject canvas;		//The canvas which attaches it
+
 	[SerializeField]
 	GameObject ballImg;
+	[SerializeField]
+	GameObject goalImg;
 	GameObject[] ballImgs;
+	GameObject[] goalImgs;
+
 	[SerializeField]
 	GameObject fin;
 
@@ -21,16 +25,20 @@ public class GameUIManager : MonoBehaviour {
 		ZText = transform.Find("ZRateText").GetComponent<Text>();
 		canvas = this.gameObject;
 		ballImgs = new GameObject[GameRuleManager.GetBallNum()];
+		goalImgs = new GameObject[GameRuleManager.GetBallNum()];
 
 		for (int i = 0; i < GameRuleManager.GetBallNum(); i++)
 		{
 			ballImgs[i] = Instantiate(ballImg, canvas.transform);
+			goalImgs[i] = Instantiate(ballImg, canvas.transform);
 		}
 	}
 	
 	void Update () {
 		for (int i = 0; i < ballImgs.Length; i++)
-			HangImgOnScreen(GameRuleManager.GetBallObject(i), ballImgs[i].GetComponent<Image>());
+				HangImgOnScreen(GameRuleManager.GetBallObject(i), ballImgs[i].GetComponent<Image>());
+		for (int i = 0; i < ballImgs.Length; i++) ;
+				//HangImgOnScreen(GameRuleManager.GetBallObject(i), goalImgs[i].GetComponent<Image>());
 	}
 
 	void HangImgOnScreen(GameObject obj, Image img)
@@ -43,6 +51,8 @@ public class GameUIManager : MonoBehaviour {
 	}
 
 	
+	const string prefix = "rate: ";
+
 	public void UpdateTexts(float Xrate, float Yrate, float Zrate)
 	{
 		XText.text = "X" + prefix + Xrate.ToString();
