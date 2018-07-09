@@ -102,9 +102,4 @@ public class MapGenerator : MonoBehaviour {
 		else
 			goalNum = p;
 	}
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

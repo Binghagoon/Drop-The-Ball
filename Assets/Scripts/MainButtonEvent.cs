@@ -36,13 +36,4 @@ public class MainButtonEvent : MonoBehaviour {
 			Debug.Log("setting the level is complete.");
 		}
 	}
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
