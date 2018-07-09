@@ -45,7 +45,7 @@ public class MainButtonEvent : MonoBehaviour {
 		levelSelector.SetActive(false);
 	}
 
-	public void OnClickLevelButton(Button button)
+	public void OnClickStageButton(Button button)
 	{
 		string lv1 = button.transform.parent.name.Substring(5);
 		Debug.Log(lv1);
