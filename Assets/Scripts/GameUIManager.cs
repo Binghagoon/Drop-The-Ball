@@ -24,10 +24,10 @@ public class GameUIManager : MonoBehaviour {
 		YText = transform.Find("YRateText").GetComponent<Text>();
 		ZText = transform.Find("ZRateText").GetComponent<Text>();
 		canvas = this.gameObject;
-		ballImgs = new GameObject[GameRuleManager.GetBallNum()];
-		goalImgs = new GameObject[GameRuleManager.GetBallNum()];
+		ballImgs = new GameObject[GameRuleManager.Instanse().GetBallNum()];
+		goalImgs = new GameObject[GameRuleManager.Instanse().GetBallNum()];
 
-		for (int i = 0; i < GameRuleManager.GetBallNum(); i++)
+		for (int i = 0; i < GameRuleManager.Instanse().GetBallNum(); i++)
 		{
 			ballImgs[i] = Instantiate(ballImg, canvas.transform);
 			goalImgs[i] = Instantiate(ballImg, canvas.transform);
@@ -36,9 +36,9 @@ public class GameUIManager : MonoBehaviour {
 	
 	void Update () {
 		for (int i = 0; i < ballImgs.Length; i++)
-				HangImgOnScreen(GameRuleManager.GetBallObject(i), ballImgs[i].GetComponent<Image>());
+				HangImgOnScreen(GameRuleManager.Instanse().GetBallObject(i), ballImgs[i].GetComponent<Image>());
 		for (int i = 0; i < ballImgs.Length; i++) ;
-				//HangImgOnScreen(GameRuleManager.GetBallObject(i), goalImgs[i].GetComponent<Image>());
+				//HangImgOnScreen(GameRuleManager.Instanse().GetBallObject(i), goalImgs[i].GetComponent<Image>());
 	}
 
 	void HangImgOnScreen(GameObject obj, Image img)

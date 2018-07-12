@@ -21,7 +21,7 @@ public class Goal : MonoBehaviour {
 		if(collider.transform.name.Contains("Ball"))
 		{
             if (isChecked) return;
-            GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalChecked();
+            GameRuleManager.Instanse().GoalChecked();
 			//Destroy(gameObject);
 			GetComponent<MeshFilter>().mesh = null;
             //GetComponent<CapsuleCollider>().enabled = false;
@@ -34,7 +34,7 @@ public class Goal : MonoBehaviour {
 		if(collider.transform.name.Contains("Ball"))
 		{
             if (!isChecked) return;
-            GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalUnChecked();
+            GameRuleManager.Instanse().GoalUnChecked();
 			//Destroy(gameObject);
 			GetComponent<MeshFilter>().mesh = Capsule;
 			GetComponent<CapsuleCollider>().enabled = true;

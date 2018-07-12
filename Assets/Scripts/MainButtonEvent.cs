@@ -34,8 +34,8 @@ public class MainButtonEvent : MonoBehaviour {
 			inputField.text = "";
 		}
 		else {
-			GameRuleManager.gameLv1 = int.Parse(char.ToString(inputField.text[0]));
-			GameRuleManager.gameLv2 = int.Parse(char.ToString(inputField.text[2]));
+			GameRuleManager.Instanse().gameLv1 = int.Parse(char.ToString(inputField.text[0]));
+			GameRuleManager.Instanse().gameLv2 = int.Parse(char.ToString(inputField.text[2]));
 			Debug.Log("setting the level is complete.");
 		}
 	}
@@ -51,8 +51,8 @@ public class MainButtonEvent : MonoBehaviour {
 		Debug.Log(lv1);
 		string lv2 = button.name.Substring(1);
 		Debug.Log(lv2);
-		GameRuleManager.gameLv1 = int.Parse(lv1);
-		GameRuleManager.gameLv2 = int.Parse(lv2);
+		GameRuleManager.Instanse().gameLv1 = int.Parse(lv1);
+		GameRuleManager.Instanse().gameLv2 = int.Parse(lv2);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
 
 	}
