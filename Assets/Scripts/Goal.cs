@@ -5,6 +5,7 @@ using UnityEngine;
 public class Goal : MonoBehaviour {
 
 	Mesh Capsule;
+    bool isChecked = false;
 	// Use this for initialization
 	void Start () {
 		Capsule = GetComponent<MeshFilter>().mesh;
@@ -19,10 +20,12 @@ public class Goal : MonoBehaviour {
 	{
 		if(collider.transform.name.Contains("Ball"))
 		{
-			GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalChecked();
+            if (isChecked) return;
+            GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalChecked();
 			//Destroy(gameObject);
 			GetComponent<MeshFilter>().mesh = null;
-			//GetComponent<CapsuleCollider>().enabled = false;
+            //GetComponent<CapsuleCollider>().enabled = false;
+            isChecked = true;
 		}
 	}
 
@@ -30,10 +33,12 @@ public class Goal : MonoBehaviour {
 	{
 		if(collider.transform.name.Contains("Ball"))
 		{
-			GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalUnChecked();
+            if (!isChecked) return;
+            GameObject.Find("EventSystem").GetComponent<GameRuleManager>().GoalUnChecked();
 			//Destroy(gameObject);
 			GetComponent<MeshFilter>().mesh = Capsule;
 			GetComponent<CapsuleCollider>().enabled = true;
+            isChecked = false;
 		}
 	}
 }
