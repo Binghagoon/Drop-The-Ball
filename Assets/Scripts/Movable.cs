@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour {
-
+public class Movable : MonoBehaviour {
+    
+    [SerializeField]
     float speed = 3.0f;
     Rigidbody rigidbody;
 
     void SetVelocity(Vector3 vec, double force)
     {
-        regidbody.velocity = vec;
+        rigidbody.velocity = vec;
     }
 
     void Awake() {
@@ -17,6 +18,6 @@ public class Ball : MonoBehaviour {
     }
 
     void Update() {
-        SetVelocity(InputController.instance.vec, 1f);
+        SetVelocity(InputController.Instance().Delta, speed);
     }
 }

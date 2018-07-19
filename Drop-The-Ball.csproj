@@ -290,8 +290,11 @@
     <Compile Include="Assets\Scripts\GameRuleManager.cs" />
     <Compile Include="Assets\Scripts\GameUIManager.cs" />
     <Compile Include="Assets\Scripts\Goal.cs" />
+    <Compile Include="Assets\Scripts\InputController.cs" />
     <Compile Include="Assets\Scripts\MainButtonEvent.cs" />
+    <Compile Include="Assets\Scripts\MainData.cs" />
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Movable.cs" />
     <Compile Include="Assets\Scripts\PlayerMovementManager.cs" />
   </ItemGroup>
   <ItemGroup>

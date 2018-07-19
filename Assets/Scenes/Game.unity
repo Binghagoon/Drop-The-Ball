@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 37407572}
   - component: {fileID: 37407571}
   - component: {fileID: 37407576}
+  - component: {fileID: 37407577}
   - component: {fileID: 37407575}
   - component: {fileID: 37407574}
   m_Layer: 0
@@ -218,6 +219,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5df57e73bf626541a71e132debbde54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameLv1: 1
+  gameLv2: 1
+--- !u!114 &37407577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 37407570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f23e7a0b2dfc346aee356f0c3ae659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &208508636
@@ -404,6 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballImg: {fileID: 1777210694046834, guid: 99a654def0e93374c93a9f530c421fb6, type: 2}
+  goalImg: {fileID: 0}
   fin: {fileID: 823949806}
 --- !u!1 &457232996
 GameObject:

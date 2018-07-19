@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class GameRuleManager : MonoBehaviour {
 
-    private static GameRuleManager instanse;    //This is a singletone
+    private static GameRuleManager instance;    //This is a singletone
 
 	int ballNum = 0;
-	public int gameLv1 = 1;
-	public int gameLv2 = 1;
 	GameObject[] balls;
 	GameObject[] goals;
     float AllCheckedTime = 0f;
@@ -22,24 +20,20 @@ public class GameRuleManager : MonoBehaviour {
     [SerializeField]
     static float ClearTime;
 
-
-    protected GameRuleManager()
-    {
-        MapGenerator mapGenerator = GetComponent<MapGenerator>();
-        mapGenerator.Generate(gameLv1, gameLv2);
-        ballNum = mapGenerator.GoalNum;
-        goals = GameObject.FindGameObjectsWithTag("Goal");
-        balls = GameObject.FindGameObjectsWithTag("Ball");
-        if (ClearTime == 0f)
-            ClearTime = 1f;
+    private GameRuleManager() { }
+    public static GameRuleManager Instance() {
+        if (instance == null) return instance = new GameRuleManager();
+        return instance;
     }
 
-    public static GameRuleManager Instanse()
+    private static void SingletonInitialize(GameRuleManager method)
     {
-        if (instanse == null)
-            instanse = new GameRuleManager();
-
-        return instanse;
+        if (instance == null)
+            instance = method;
+        else
+        {
+            Debug.Log("GameRuleManager should exist only one. Destroy.");
+        }
     }
 
 	public void GoalChecked()
@@ -60,7 +54,16 @@ public class GameRuleManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        Instanse();
+        SingletonInitialize(this);
+        MapGenerator mapGenerator = GetComponent<MapGenerator>();
+        int gameLv1 = MainData.Instance().gameLv1;
+        int gameLv2 = MainData.Instance().gameLv2;
+        mapGenerator.Generate(gameLv1, gameLv2);
+        ballNum = mapGenerator.GoalNum;
+        goals = GameObject.FindGameObjectsWithTag("Goal");
+        balls = GameObject.FindGameObjectsWithTag("Ball");
+        if (ClearTime == 0f)
+            ClearTime = 1f;
 	}
 	
     void Update()
