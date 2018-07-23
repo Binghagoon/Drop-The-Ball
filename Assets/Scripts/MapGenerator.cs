@@ -9,6 +9,8 @@ public class MapGenerator : MonoBehaviour {
 	[SerializeField]
 	public GameObject wall;
 	[SerializeField]
+	public GameObject wall_movable;
+	[SerializeField]
 	public GameObject empty;
 	[SerializeField]
 	public GameObject ballSpawnPoint;
@@ -63,6 +65,9 @@ public class MapGenerator : MonoBehaviour {
 					case '1':
 						spn = wall;
 						break;
+                    case '2':
+                        spn = wall_movable;
+                        break;
 					case '@':
 						spn = ballSpawnPoint;
 						break;

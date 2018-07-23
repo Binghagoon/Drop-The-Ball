@@ -300,7 +300,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -726,7 +726,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickExit
         m_Mode: 1
         m_Arguments:
@@ -1239,7 +1239,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickSetting
         m_Mode: 1
         m_Arguments:
@@ -1819,7 +1819,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnDebugLvSelectorExit
         m_Mode: 2
         m_Arguments:
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -2593,7 +2593,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickLvSelectorExit
         m_Mode: 1
         m_Arguments:
@@ -2715,7 +2715,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -2991,95 +2991,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1683876410}
---- !u!1 &1685402332
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1685402336}
-  - component: {fileID: 1685402335}
-  - component: {fileID: 1685402334}
-  - component: {fileID: 1685402333}
-  - component: {fileID: 1685402337}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1685402333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1685402332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed8fdee5e8120643bdf43046d018661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelSelector: {fileID: 672707144}
---- !u!114 &1685402334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1685402332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1685402335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1685402332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 5
---- !u!4 &1685402336
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1685402332}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1685402337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1685402332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81a94a4007496846bd3bd101dc42a80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameLv1: 1
-  gameLv2: 1
 --- !u!1 &1737751028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,7 +3067,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -3470,7 +3381,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -3782,7 +3693,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
@@ -4046,7 +3957,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickGameStart
         m_Mode: 1
         m_Arguments:
@@ -4242,7 +4153,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685402333}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickStageButton
         m_Mode: 2
         m_Arguments:
