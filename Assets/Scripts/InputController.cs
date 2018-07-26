@@ -10,10 +10,7 @@ public class InputController : MonoBehaviour {
     Vector3 vec;
     public Vector3 Delta { get {return vec;} }
 
-    protected InputController()
-    {
-
-    }
+    protected InputController() { }
 
     public static InputController Instance()
     {

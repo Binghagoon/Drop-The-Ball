@@ -8,8 +8,9 @@ public class Movable : MonoBehaviour {
     float speed = 3.0f;
     Rigidbody rigidbody;
 
-    void SetVelocity(Vector3 vec, double force)
+    void SetVelocity(Vector3 vec)
     {
+        vec.Scale(new Vector3(speed, speed, speed));
         rigidbody.velocity = vec;
     }
 
@@ -18,6 +19,6 @@ public class Movable : MonoBehaviour {
     }
 
     void Update() {
-        SetVelocity(InputController.Instance().Delta, speed);
+        SetVelocity(InputController.Instance().Delta);
     }
 }

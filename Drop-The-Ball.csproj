@@ -305,6 +305,7 @@
     <None Include="Assets\Resources\Maps\2-2.txt" />
     <None Include="Assets\Resources\Maps\2-3.txt" />
     <None Include="Assets\Resources\Maps\2-4.txt" />
+    <None Include="Assets\Resources\Maps\미상1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

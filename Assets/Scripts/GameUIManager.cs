@@ -30,7 +30,7 @@ public class GameUIManager : MonoBehaviour {
 		for (int i = 0; i < GameRuleManager.Instance().GetBallNum(); i++)
 		{
 			ballImgs[i] = Instantiate(ballImg, canvas.transform);
-			goalImgs[i] = Instantiate(goalImg, canvas.transform);
+			//goalImgs[i] = Instantiate(goalImg, canvas.transform);
 		}
 	}
 	
