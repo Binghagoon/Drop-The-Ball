@@ -29,14 +29,23 @@ public class MapGenerator : MonoBehaviour {
 	public void Generate(int lv1, int lv2) 
 	{
 		mapBinary = ReadMapBySystem(lv1.ToString() + "-" + lv2.ToString());
+        if (mapBinary == null)
+        {
+            Debug.Log("There is not TextAsset for this stage. Failed.");
+            return;
+        }
 		GenerateMap(mapBinary);
 	}
 
 	string ReadMapBySystem(string stage)
 	{
+        string data;
+        TextAsset Assetdata = null;
+        //Deprecated
+        /*
 		try
 		{
-			string data = System.IO.File.ReadAllText("Assets/Resources/Maps/" + stage + ".txt");
+			data = System.IO.File.ReadAllText("Assets/Resources/Maps/" + stage + ".txt");
 			Debug.Log("Successed to extract this stage!");
 			return data;
 		}
@@ -46,6 +55,17 @@ public class MapGenerator : MonoBehaviour {
 			Debug.Log(e.StackTrace);
 			return "";
 		}
+        */
+        try
+        {
+            Assetdata = Resources.Load("Maps/"+ stage) as TextAsset;
+        }
+        catch(UnityException e)
+        {
+            Debug.Log(e.StackTrace);
+        }
+        return Assetdata.text;
+        
 	}
 
 	void GenerateMap(string mapBin)

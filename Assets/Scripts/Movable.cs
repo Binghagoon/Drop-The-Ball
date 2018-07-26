@@ -10,7 +10,7 @@ public class Movable : MonoBehaviour {
 
     void SetVelocity(Vector3 vec)
     {
-        vec.Scale(new Vector3(speed, speed, speed));
+        vec.Scale(new Vector3(speed, 0, speed));
         rigidbody.velocity = vec;
     }
 

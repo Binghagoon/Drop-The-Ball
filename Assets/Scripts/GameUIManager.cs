@@ -19,6 +19,14 @@ public class GameUIManager : MonoBehaviour {
 	[SerializeField]
 	GameObject fin;
 
+	[SerializeField]
+	GameObject escape;
+
+    public void EscapePushed()
+    {
+        escape.SetActive(!escape.activeSelf);
+    }
+
 	void Start () {
 		XText = transform.Find("XRateText").GetComponent<Text>();
 		YText = transform.Find("YRateText").GetComponent<Text>();

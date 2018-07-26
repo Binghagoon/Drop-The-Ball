@@ -8,6 +8,8 @@ public class MainButtonEvent : MonoBehaviour {
 	[SerializeField]
 	GameObject levelSelector;
 
+    bool isOnce = false;
+
 	public void OnClickGameStart()
 	{
 		levelSelector.SetActive(true);
@@ -54,6 +56,19 @@ public class MainButtonEvent : MonoBehaviour {
 		MainData.Instance().gameLv1 = int.Parse(lv1);
 		MainData.Instance().gameLv2 = int.Parse(lv2);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
-
 	}
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            if (!isOnce)
+                Application.Quit();
+            else
+            {
+                Debug.Log("Game will be exited if escape key is pressed once more.");
+                isOnce = true;
+            }
+        }
+    }
 }
