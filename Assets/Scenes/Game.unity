@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballImg: {fileID: 1777210694046834, guid: 99a654def0e93374c93a9f530c421fb6, type: 2}
-  goalImg: {fileID: 0}
+  goalImg: {fileID: 1223352990189696, guid: 277d1793dd712d34b85545ddb449bf86, type: 2}
   fin: {fileID: 823949806}
   escape: {fileID: 834844692}
 --- !u!1 &457232996

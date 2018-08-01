@@ -41,7 +41,7 @@ public class GameRuleManager : MonoBehaviour {
 		ballNum--;
 		if(ballNum == 0)		// The scripts when game ends
 		{
-			Debug.Log("The game almost goes end.");
+			Debug.Log("The game almost goes to end.");
             AllChecked = true;
 		}
 	}
@@ -76,6 +76,7 @@ public class GameRuleManager : MonoBehaviour {
             FindObjectOfType<GameUIManager>().LoadGameEndUI();
             foreach (GameObject obj in balls)
                 obj.SetActive(false);
+            AllChecked = false;
         }
         else AllCheckedTime += Time.deltaTime;
     }

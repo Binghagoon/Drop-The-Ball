@@ -38,15 +38,17 @@ public class GameUIManager : MonoBehaviour {
 		for (int i = 0; i < GameRuleManager.Instance().GetBallNum(); i++)
 		{
 			ballImgs[i] = Instantiate(ballImg, canvas.transform);
-			//goalImgs[i] = Instantiate(goalImg, canvas.transform);
+			goalImgs[i] = Instantiate(goalImg, canvas.transform);
 		}
 	}
 	
 	void Update () {
 		for (int i = 0; i < ballImgs.Length; i++)
-				HangImgOnScreen(GameRuleManager.Instance().GetBallObject(i), ballImgs[i].GetComponent<Image>());
-		for (int i = 0; i < ballImgs.Length; i++) ;
-				//HangImgOnScreen(GameRuleManager.Instanse().GetBallObject(i), goalImgs[i].GetComponent<Image>());
+        {
+            HangImgOnScreen(GameRuleManager.Instance().GetBallObject(i), ballImgs[i].GetComponent<Image>());
+            HangImgOnScreen(GameRuleManager.Instance().GetGoalObject(i), goalImgs[i].GetComponent<Image>());
+        }
+
 	}
 
 	void HangImgOnScreen(GameObject obj, Image img)
