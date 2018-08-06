@@ -36,7 +36,7 @@ public class GameRuleManager : MonoBehaviour {
         }
     }
 
-	public void GoalChecked()
+	public void GoalChecked(GameObject ball)
 	{
 		ballNum--;
 		if(ballNum == 0)		// The scripts when game ends
@@ -45,12 +45,29 @@ public class GameRuleManager : MonoBehaviour {
             AllChecked = true;
 		}
 	}
-
-	public void GoalUnChecked()
+	public void GoalUnChecked(GameObject ball)
 	{
 		ballNum++;
         AllChecked = false;
+        AllCheckedTime = 0;
 	}
+    public void GamePause() { SetGameObject(false); }
+    public void GameDepause() { SetGameObject(true); }
+
+
+    private void SetGameObject(bool isActive)
+    {
+        if(isActive)
+        {
+            foreach (GameObject obj in balls)
+                obj.SetActive(true);
+        }
+        else
+        {
+            foreach (GameObject obj in balls)
+                obj.SetActive(false);
+        }
+    }
 
 	// Use this for initialization
 	void Awake () {
@@ -74,8 +91,7 @@ public class GameRuleManager : MonoBehaviour {
         {
             Debug.Log("The game is end!");
             FindObjectOfType<GameUIManager>().LoadGameEndUI();
-            foreach (GameObject obj in balls)
-                obj.SetActive(false);
+            SetGameObject(true);
             AllChecked = false;
         }
         else AllCheckedTime += Time.deltaTime;

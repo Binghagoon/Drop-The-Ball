@@ -24,6 +24,7 @@ public class GameUIManager : MonoBehaviour {
 
     public void EscapePushed()
     {
+		escape.transform.SetAsLastSibling();
         escape.SetActive(!escape.activeSelf);
     }
 
@@ -40,6 +41,8 @@ public class GameUIManager : MonoBehaviour {
 			ballImgs[i] = Instantiate(ballImg, canvas.transform);
 			goalImgs[i] = Instantiate(goalImg, canvas.transform);
 		}
+        foreach(GameObject obj in goalImgs)
+            obj.transform.SetAsLastSibling();
 	}
 	
 	void Update () {
