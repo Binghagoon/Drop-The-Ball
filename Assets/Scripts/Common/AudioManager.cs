@@ -7,10 +7,12 @@ public class AudioManager : MonoBehaviour {
     private static AudioManager instance;
     private AudioManager() { }
     public static AudioManager Instance() { return instance; }
+    float time;
     [SerializeField]
     GameObject SoundEffect;
     AudioSource rolling;
     AudioSource enter;
+    AudioSource intro;
 
     public void BallRolling(float force)
     {
@@ -23,7 +25,8 @@ public class AudioManager : MonoBehaviour {
         }
         else if(force == 0f || !rolling.isPlaying)
         {
-            Destroy(rolling.gameObject);
+            if(rolling != null)
+                Destroy(rolling.gameObject);
             rolling = null;
         }
         else
@@ -31,13 +34,15 @@ public class AudioManager : MonoBehaviour {
     }
     public void GoalEntered()
     {
-        Destroy(enter.gameObject);
+        if(enter != null)               //Why should this code be alive????
+            Destroy(enter.gameObject);
         enter = CreateEffect("Musics/Ball_IntoGoal");
     }
     public void GoalExited()
     {
-        Destroy(enter.gameObject);
-        enter = CreateEffect("Musics/ball_OutfromGoal");
+        if(enter != null)
+            Destroy(enter.gameObject);
+        enter = CreateEffect("Musics/Ball_OutfromGoal");
     }
     public void GamePause()
     {
@@ -46,7 +51,7 @@ public class AudioManager : MonoBehaviour {
     public void GameStart()
     {
         string num = Random.Range(1, 3).ToString();
-        CreateEffect("Musics/Ball_Start" + num);
+        intro = CreateEffect("Musics/Ball_Start" + num);
     }
     public void GameRestart()
     {
@@ -80,6 +85,12 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (time > 1)
+        {
+            //Destroy(intro.gameObject);
+            time = 0f;
+        }
+        else
+            time += Time.deltaTime;
 	}
 }

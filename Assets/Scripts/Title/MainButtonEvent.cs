@@ -42,6 +42,12 @@ public class MainButtonEvent : MonoBehaviour {
 		}
 	}
 
+    public void OnClickMusicButton()
+    {
+        AudioManager.Instance().GetComponent<AudioSource>().mute = 
+            !AudioManager.Instance().GetComponent<AudioSource>().mute;
+    }
+
 	public void OnClickLvSelectorExit()
 	{
 		levelSelector.SetActive(false);

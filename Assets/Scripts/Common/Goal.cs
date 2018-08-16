@@ -26,6 +26,7 @@ public class Goal : MonoBehaviour {
 			GetComponent<MeshFilter>().mesh = null;
             //GetComponent<CapsuleCollider>().enabled = false;
             isChecked = true;
+            AudioManager.Instance().GoalEntered();
 		}
 	}
 
@@ -39,6 +40,7 @@ public class Goal : MonoBehaviour {
 			GetComponent<MeshFilter>().mesh = Capsule;
 			GetComponent<CapsuleCollider>().enabled = true;
             isChecked = false;
+            AudioManager.Instance().GoalExited();
 		}
 	}
 }

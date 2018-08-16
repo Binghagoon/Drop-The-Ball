@@ -90,12 +90,13 @@ public class GameRuleManager : MonoBehaviour {
     {
         if (!AllChecked) return;
 
-        if (AllCheckedTime > 1f)
+        if (AllCheckedTime > 1f)            //Script executed when game ends.
         {
             Debug.Log("The game is end!");
             FindObjectOfType<GameUIManager>().LoadGameEndUI();
             SetGameObject(true);
             AllChecked = false;
+            Destroy(GetComponent<InputController>());
         }
         else AllCheckedTime += Time.deltaTime;
     }
