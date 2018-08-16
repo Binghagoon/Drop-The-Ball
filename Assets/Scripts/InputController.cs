@@ -62,6 +62,7 @@ public class InputController : MonoBehaviour {
             _ui.UpdateTexts(Delta.x, Delta.y, Delta.z);
         }
 
+        AudioManager.Instance().BallRolling(Delta.magnitude);
         if (Input.GetKey(KeyCode.Escape) && esctime <= 0f)
         {
             

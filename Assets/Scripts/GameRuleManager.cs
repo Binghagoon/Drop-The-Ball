@@ -44,12 +44,14 @@ public class GameRuleManager : MonoBehaviour {
 			Debug.Log("The game almost goes to end.");
             AllChecked = true;
 		}
+        AudioManager.Instance().GoalEntered();
 	}
 	public void GoalUnChecked(GameObject ball)
 	{
 		ballNum++;
         AllChecked = false;
         AllCheckedTime = 0;
+        AudioManager.Instance().GoalExited();
 	}
     public void GamePause() { SetGameObject(false); }
     public void GameDepause() { SetGameObject(true); }
@@ -81,6 +83,7 @@ public class GameRuleManager : MonoBehaviour {
         balls = GameObject.FindGameObjectsWithTag("Ball");
         if (ClearTime == 0f)
             ClearTime = 1f;
+        AudioManager.Instance().GameStart();
 	}
 	
     void Update()
