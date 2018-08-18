@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour {
     private static AudioManager instance;
     private AudioManager() { }
     public static AudioManager Instance() { return instance; }
-    float time;
     [SerializeField]
     GameObject SoundEffect;
     AudioSource rolling;
@@ -20,8 +19,8 @@ public class AudioManager : MonoBehaviour {
         {
             if (force == 0f) return;
             string num = Random.Range(1, 4).ToString();
-            rolling = CreateEffect("Musics/Ball_Rolling" + num);
-            rolling.volume = force;
+            rolling = CreateEffect("Ball_Rolling" + num);
+            if(rolling != null) rolling.volume = force;
         }
         else if(force == 0f || !rolling.isPlaying)
         {
@@ -32,17 +31,24 @@ public class AudioManager : MonoBehaviour {
         else
             rolling.volume = force;
     }
+
+    public void BallCollision(float force)
+    {
+        if (force < 0.3f) return;
+        AudioSource c = CreateEffect("Ball_Collision");
+        c.volume = force;
+    }
     public void GoalEntered()
     {
         if(enter != null)               //Why should this code be alive????
             Destroy(enter.gameObject);
-        enter = CreateEffect("Musics/Ball_IntoGoal");
+        enter = CreateEffect("Ball_IntoGoal");
     }
     public void GoalExited()
     {
         if(enter != null)
             Destroy(enter.gameObject);
-        enter = CreateEffect("Musics/Ball_OutfromGoal");
+        enter = CreateEffect("Ball_OutfromGoal");
     }
     public void GamePause()
     {
@@ -51,7 +57,7 @@ public class AudioManager : MonoBehaviour {
     public void GameStart()
     {
         string num = Random.Range(1, 3).ToString();
-        intro = CreateEffect("Musics/Ball_Start" + num);
+        intro = CreateEffect("Ball_Start" + num);
     }
     public void GameRestart()
     {
@@ -64,9 +70,10 @@ public class AudioManager : MonoBehaviour {
 
     AudioSource CreateEffect(string path)
     {
+        if (MainData.Instance().EffectMute) return null;
         GameObject effect = Instantiate(SoundEffect);
         effect.transform.SetParent(gameObject.transform);
-        AudioClip clip = Resources.Load(path) as AudioClip;
+        AudioClip clip = Resources.Load("Musics/" + path) as AudioClip;
         effect.GetComponent<AudioSource>().clip = clip;
         effect.GetComponent<AudioSource>().Play();
         return effect.GetComponent<AudioSource>();
@@ -85,12 +92,6 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (time > 1)
-        {
-            //Destroy(intro.gameObject);
-            time = 0f;
-        }
-        else
-            time += Time.deltaTime;
+
 	}
 }

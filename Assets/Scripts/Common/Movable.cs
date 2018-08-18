@@ -6,7 +6,7 @@ public class Movable : MonoBehaviour {
     
     [SerializeField]
     float speed = 3.0f;
-    Rigidbody rigidbody;
+    new Rigidbody rigidbody;
 
     void SetVelocity(Vector3 vec)
     {
@@ -21,4 +21,15 @@ public class Movable : MonoBehaviour {
     void Update() {
         SetVelocity(InputController.Instance().Delta);
     }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.name.Contains("1x1"))
+        {
+            float force = rigidbody.velocity.sqrMagnitude;
+            AudioManager.Instance().BallCollision(force);
+        }
+    }
+    */
+
 }

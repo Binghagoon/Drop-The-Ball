@@ -6,6 +6,9 @@ public class MainData : MonoBehaviour {
 
 	public int gameLv1 = 1;
 	public int gameLv2 = 1;
+    public bool BGMmute = false;
+    public bool EffectMute = false;
+    public float sensitivity = 1.0f;
     private static MainData instance;
 
     protected MainData(){}
@@ -14,8 +17,12 @@ public class MainData : MonoBehaviour {
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else;
+        if (instance == null) 
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else Destroy(gameObject);
     }
 
     // Update is called once per frame

@@ -288,6 +288,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Common\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Common\Goal.cs" />
+    <Compile Include="Assets\Scripts\Common\MainData.cs" />
     <Compile Include="Assets\Scripts\Common\Movable.cs" />
     <Compile Include="Assets\Scripts\Common\SoundEffectAutoDestroy.cs" />
     <Compile Include="Assets\Scripts\Game\GameEvent.cs" />
@@ -297,7 +298,6 @@
     <Compile Include="Assets\Scripts\Game\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\Title\MainButtonEvent.cs" />
-    <Compile Include="Assets\Scripts\Title\MainData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Maps\1-1.txt" />

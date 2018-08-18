@@ -5,19 +5,32 @@ using UnityEngine.UI;
 
 public class MainButtonEvent : MonoBehaviour {
 
-	[SerializeField]
-	GameObject levelSelector;
+    [SerializeField]
+    GameObject levelSelector;
+    [SerializeField]
+    GameObject Setting;
+    [SerializeField]
+    Sprite MusicPlay;
+    [SerializeField]
+    Sprite MusicMute;
 
     bool isOnce = false;
 
 	public void OnClickGameStart()
 	{
+        Setting.SetActive(false);
 		levelSelector.SetActive(true);
 	}
 
 	public void OnClickSetting()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Setting");		//Need to be modified.
+        Setting.SetActive(!Setting.activeSelf);
+        Transform view = Setting.transform.GetChild(0).GetChild(0);
+        view.GetComponentInChildren<Slider>().value = MainData.Instance().sensitivity;
+        view.Find("MusicButtonBGM").GetComponent<Image>().sprite =
+            MainData.Instance().BGMmute ? MusicMute : MusicPlay;
+        view.Find("MusicButtonEffect").GetComponent<Image>().sprite =
+            MainData.Instance().EffectMute ? MusicMute : MusicPlay;
 	}
 	
 	public void OnClickExit()
@@ -42,10 +55,25 @@ public class MainButtonEvent : MonoBehaviour {
 		}
 	}
 
-    public void OnClickMusicButton()
+    public void OnClickBGMButton(Button button)
     {
-        AudioManager.Instance().GetComponent<AudioSource>().mute = 
-            !AudioManager.Instance().GetComponent<AudioSource>().mute;
+        bool isMuted = !MainData.Instance().BGMmute;
+        AudioManager.Instance().GetComponent<AudioSource>().mute = isMuted;
+        if(isMuted)
+            button.GetComponent<Image>().sprite = MusicMute;
+        else
+            button.GetComponent<Image>().sprite = MusicPlay;
+        MainData.Instance().BGMmute = isMuted;
+    }
+
+    public void OnClickEffectButton(Button button)
+    {
+        bool isMuted = !MainData.Instance().EffectMute;
+        if(isMuted)
+            button.GetComponent<Image>().sprite = MusicMute;
+        else
+            button.GetComponent<Image>().sprite = MusicPlay;
+        MainData.Instance().EffectMute = isMuted;
     }
 
 	public void OnClickLvSelectorExit()
@@ -63,6 +91,11 @@ public class MainButtonEvent : MonoBehaviour {
 		MainData.Instance().gameLv2 = int.Parse(lv2);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
 	}
+
+    public void OnSensitivityValueChanged(Slider slider)
+    {
+        MainData.Instance().sensitivity = slider.value;
+    }
 
     private void Update()
     {
