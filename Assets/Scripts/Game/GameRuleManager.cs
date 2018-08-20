@@ -9,14 +9,18 @@ public class GameRuleManager : MonoBehaviour {
 	int ballNum = 0;
 	GameObject[] balls;
 	GameObject[] goals;
+	GameObject[] walls;
     float AllCheckedTime = 0f;
     bool AllChecked = false;
+    GameUIManager _ui;
 
 	public int GetBallNum() { return ballNum; }
 	public GameObject GetBallObject(int index) { return balls[index]; }
 	public GameObject[] GetBallObject() { return balls; }
 	public GameObject GetGoalObject(int index) { return goals[index]; }
 	public GameObject[] GetGoalObject() { return goals; }
+	public GameObject GetWallObject(int index) { return walls[index]; }
+	public GameObject[] GetWallObject() { return walls; }
     [SerializeField]
     static float ClearTime;
 
@@ -36,7 +40,7 @@ public class GameRuleManager : MonoBehaviour {
         }
     }
 
-	public void GoalChecked(GameObject ball)
+	public void GoalChecked(GameObject goal)
 	{
 		ballNum--;
 		if(ballNum == 0)		// The scripts when game ends
@@ -44,13 +48,15 @@ public class GameRuleManager : MonoBehaviour {
 			Debug.Log("The game almost goes to end.");
             AllChecked = true;
 		}
+        _ui.GoalImageChange(goal, true);
         AudioManager.Instance().GoalEntered();
 	}
-	public void GoalUnChecked(GameObject ball)
+	public void GoalUnChecked(GameObject goal)
 	{
 		ballNum++;
         AllChecked = false;
         AllCheckedTime = 0;
+        _ui.GoalImageChange(goal, false);
         AudioManager.Instance().GoalExited();
 	}
     public void GamePause() { SetGameObject(false); }
@@ -81,8 +87,10 @@ public class GameRuleManager : MonoBehaviour {
         ballNum = mapGenerator.GoalNum;
         goals = GameObject.FindGameObjectsWithTag("Goal");
         balls = GameObject.FindGameObjectsWithTag("Ball");
+        walls = GameObject.FindGameObjectsWithTag("Wall");
         if (ClearTime == 0f)
             ClearTime = 1f;
+        _ui = FindObjectOfType<GameUIManager>();
         AudioManager.Instance().GameStart();
 	}
 	

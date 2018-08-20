@@ -541,6 +541,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballImg: {fileID: 1777210694046834, guid: 99a654def0e93374c93a9f530c421fb6, type: 2}
   goalImg: {fileID: 1223352990189696, guid: 277d1793dd712d34b85545ddb449bf86, type: 2}
+  goalClearImg: {fileID: 1428951583348634, guid: 13735a470d3bdc041aeb8ed376b991b6,
+    type: 2}
+  wallImg:
+  - {fileID: 1294647223207518, guid: 3e6202ac3070e184ab28865c02e0a02c, type: 2}
+  - {fileID: 1145166739205544, guid: 948bf27db1312584298bfb76add65a86, type: 2}
+  - {fileID: 1577228222759844, guid: bc284eb740ba1a14da8fb9357f1f5115, type: 2}
+  - {fileID: 1047275288594584, guid: 348f2be54f20ccb41ab150cb51fb3521, type: 2}
+  - {fileID: 1444611661648066, guid: a7b2f9f628cec92408012a951b0ce21c, type: 2}
+  - {fileID: 1872782971740404, guid: 0dc8a581dc242274a8d5740f4f3ef753, type: 2}
   fin: {fileID: 823949806}
   escape: {fileID: 834844692}
 --- !u!1 &457232996
