@@ -96,7 +96,7 @@ public class TitleEventManager : MonoBehaviour {
     public void OnClickNext(Button b)
     {
         int lv1now = MainData.Instance().gameLv1;
-        if (lv1now == 2) return;
+        if (lv1now == 3) return;
         else MainData.Instance().gameLv1 = lv1now + 1;
         ChangeLevelImage(lv1now + 1);
     }

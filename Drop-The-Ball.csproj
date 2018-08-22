@@ -312,6 +312,11 @@
     <None Include="Assets\Resources\Maps\2-4.txt" />
     <None Include="Assets\Resources\Maps\2-5.txt" />
     <None Include="Assets\Resources\Maps\2-b.txt" />
+    <None Include="Assets\Resources\Maps\3-1.txt" />
+    <None Include="Assets\Resources\Maps\3-2.txt" />
+    <None Include="Assets\Resources\Maps\3-3.txt" />
+    <None Include="Assets\Resources\Maps\3-4.txt" />
+    <None Include="Assets\Resources\Maps\3-5.txt" />
     <None Include="Assets\Resources\Maps\미상1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
