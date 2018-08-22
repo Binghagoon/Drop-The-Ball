@@ -27,10 +27,11 @@ public class GameUIManager : MonoBehaviour {
 	[SerializeField]
 	GameObject escape;
 
-    public void EscapePushed()
+    public bool EscapePushed()
     {
 		escape.transform.SetAsLastSibling();
         escape.SetActive(!escape.activeSelf);
+        return escape.activeSelf;
     }
 
 	void Start () {

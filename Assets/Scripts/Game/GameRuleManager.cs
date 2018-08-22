@@ -104,7 +104,7 @@ public class GameRuleManager : MonoBehaviour {
             FindObjectOfType<GameUIManager>().LoadGameEndUI();
             SetGameObject(true);
             AllChecked = false;
-            Destroy(GetComponent<InputController>());
+            InputController.Instance().PauseInput();
         }
         else AllCheckedTime += Time.deltaTime;
     }

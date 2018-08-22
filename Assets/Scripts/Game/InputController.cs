@@ -6,6 +6,7 @@ public class InputController : MonoBehaviour {
     
     private static InputController instance;
     bool isGyroAble;
+    bool isPaused = false;
     float time = 0f;
     float esctime = 0f;
     public Vector3 Delta { get; private set; }
@@ -17,6 +18,7 @@ public class InputController : MonoBehaviour {
 
     Vector3 ReducedAcceleration() {
         Vector3 ac = Input.acceleration;
+        ac *= MainData.Instance().sensitivity;
         return new Vector3(ac.x, 0, ac.y);
     }
 
@@ -48,15 +50,27 @@ public class InputController : MonoBehaviour {
 
     }
 
+    public void PauseInput()
+    {
+        Delta = new Vector3();
+        isPaused = true;
+    }
+
+    public void RestartInput()
+    {
+        isPaused = false;
+        Update();
+    }
+
     void Update() {
         if(instance != this)    return;
 
-        if(isGyroAble)
+        if(isGyroAble && !isPaused)
         {
             Delta = ReducedAcceleration();
             _ui.UpdateTexts(Delta.x, Delta.y, Delta.z);
         }
-        else
+        else if(!isPaused)
         {
             Delta = DebugController();
             _ui.UpdateTexts(Delta.x, Delta.y, Delta.z);
@@ -66,7 +80,9 @@ public class InputController : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape) && esctime <= 0f)
         {
             
-            GameObject.Find("Canvas").GetComponent<GameUIManager>().EscapePushed();
+            bool b = GameObject.Find("Canvas").GetComponent<GameUIManager>().EscapePushed();
+            //if (b) RestartInput();
+            //else PauseInput();
             esctime = 0.5f;
         }
 

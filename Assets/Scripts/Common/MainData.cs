@@ -9,6 +9,7 @@ public class MainData : MonoBehaviour {
     public bool BGMmute = false;
     public bool EffectMute = false;
     public float sensitivity = 1.0f;
+    public bool isPlaying = false;
     private static MainData instance;
 
     protected MainData(){}
