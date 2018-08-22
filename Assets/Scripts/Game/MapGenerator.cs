@@ -20,6 +20,8 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject ball;
 	[SerializeField]
 	public GameObject goal;
+	[SerializeField]
+	public GameObject trap;
 	string mapBinary;
 
 	private int goalNum = 0;
@@ -88,6 +90,9 @@ public class MapGenerator : MonoBehaviour {
                     case '2':
                         spn = wall_movable;
                         break;
+                    case 'X':
+                        spn = trap;
+                        break;
 					case '@':
 						spn = ballSpawnPoint;
 						break;
@@ -101,7 +106,7 @@ public class MapGenerator : MonoBehaviour {
 				if (spn == null)
 					Debug.Log("There is no spawned object");
 				else if(spn != empty)
-					Instantiate(spn, new Vector3(x, 0, y), new Quaternion(), map.GetComponent<Transform>());
+					Instantiate(spn, new Vector3(x, 0, -y + 11), new Quaternion(), map.GetComponent<Transform>());
 				x++;
 			}
 			x = 0;
