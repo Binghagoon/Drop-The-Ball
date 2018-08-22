@@ -291,6 +291,7 @@
     <Compile Include="Assets\Scripts\Common\MainData.cs" />
     <Compile Include="Assets\Scripts\Common\Movable.cs" />
     <Compile Include="Assets\Scripts\Common\SoundEffectAutoDestroy.cs" />
+    <Compile Include="Assets\Scripts\Common\Trap.cs" />
     <Compile Include="Assets\Scripts\Game\GameEvent.cs" />
     <Compile Include="Assets\Scripts\Game\GameRuleManager.cs" />
     <Compile Include="Assets\Scripts\Game\GameUIManager.cs" />

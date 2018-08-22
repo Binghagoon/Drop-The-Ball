@@ -211,6 +211,7 @@ MonoBehaviour:
     type: 2}
   ball: {fileID: 1376171947657132, guid: 83a1deea9c93c1946b2c42a6537413ef, type: 2}
   goal: {fileID: 1772627054665300, guid: e76c504281f6e9347a13cefa27e711ba, type: 2}
+  trap: {fileID: 1062551245138712, guid: 0525c19035700844d9ab78a0a0499a3d, type: 2}
 --- !u!114 &37407576
 MonoBehaviour:
   m_ObjectHideFlags: 0
