@@ -6,6 +6,7 @@ using UnityEngine.UI;
 //Must be attached to canvas
 public class GameUIManager : MonoBehaviour {
 
+    private static GameUIManager instance;
 	Text XText, YText, ZText;		//Shows forces of accelerometer
 	GameObject canvas;		//The canvas which attaches it
 
@@ -23,18 +24,16 @@ public class GameUIManager : MonoBehaviour {
 
 	[SerializeField]
 	GameObject fin;
-
+	[SerializeField]
+	GameObject defeat;
 	[SerializeField]
 	GameObject escape;
 
-    public bool EscapePushed()
-    {
-		escape.transform.SetAsLastSibling();
-        escape.SetActive(!escape.activeSelf);
-        return escape.activeSelf;
-    }
+    public static GameUIManager Instance() { return instance; }
 
 	void Start () {
+        if (instance == null) instance = this;
+        else return;
 		XText = transform.Find("XRateText").GetComponent<Text>();
 		YText = transform.Find("YRateText").GetComponent<Text>();
 		ZText = transform.Find("ZRateText").GetComponent<Text>();
@@ -103,9 +102,23 @@ public class GameUIManager : MonoBehaviour {
 		ZText.text = "Z" + prefix + Zrate.ToString();
 	}
 
-	public void LoadGameEndUI()
-	{
+    public void GamePaused()
+    {
+		escape.transform.SetAsLastSibling();
+        escape.SetActive(true);
+    }
+    public void GamePlaying()
+    {
+        escape.SetActive(false);
+    }
+    public void GameDefeated()
+    {
+        defeat.SetActive(true);
+    }
+    public void GameCleared()
+    {
 		fin.transform.SetAsLastSibling();
 		fin.SetActive(true);
-	}
+    }
+
 }

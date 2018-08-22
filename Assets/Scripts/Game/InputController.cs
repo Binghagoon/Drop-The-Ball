@@ -46,17 +46,29 @@ public class InputController : MonoBehaviour {
             _ui = FindObjectOfType<GameUIManager>();
             instance = this;
         }
-        else return;       //TBD
+        else Destroy(this);       //TBD
 
     }
 
-    public void PauseInput()
+    public void GamePaused()
     {
         Delta = new Vector3();
         isPaused = true;
     }
+    public void GamePlaying()
+    {
+        isPaused = false;
+    }
+    public void GameDefeated()
+    {
+        isPaused = true;
+    }
+    public void GameCleared()
+    {
+        isPaused = true;
+    }
 
-    public void RestartInput()
+    public void RestartInput()      //will be deprecated
     {
         isPaused = false;
         Update();
@@ -79,10 +91,7 @@ public class InputController : MonoBehaviour {
         AudioManager.Instance().BallRolling(Delta.magnitude);
         if (Input.GetKey(KeyCode.Escape) && esctime <= 0f)
         {
-            
-            bool b = GameObject.Find("Canvas").GetComponent<GameUIManager>().EscapePushed();
-            //if (b) RestartInput();
-            //else PauseInput();
+            GameRuleManager.Instance().EscapePushed();
             esctime = 0.5f;
         }
 

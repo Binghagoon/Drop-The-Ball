@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameStatus { Playing, Paused, Defeated, Cleared };
 public class GameRuleManager : MonoBehaviour {
 
     private static GameRuleManager instance;    //This is a singletone
@@ -21,24 +22,18 @@ public class GameRuleManager : MonoBehaviour {
 	public GameObject[] GetGoalObject() { return goals; }
 	public GameObject GetWallObject(int index) { return walls[index]; }
 	public GameObject[] GetWallObject() { return walls; }
+
     [SerializeField]
     static float ClearTime;
-
-    private GameRuleManager() { }
-    public static GameRuleManager Instance() {
-        if (instance == null) return instance = new GameRuleManager();
-        return instance;
-    }
-
-    private static void SingletonInitialize(GameRuleManager method)
+    GameStatus status = GameStatus.Playing;
+    GameStatus GetStatus() { return status; }
+    private void SetStatus(GameStatus status)
     {
-        if (instance == null)
-            instance = method;
-        else
-        {
-            Debug.Log("GameRuleManager should exist only one. Destroy.");
-        }
+        this.status = status;
+        StatusChanged();
     }
+
+    public static GameRuleManager Instance() { return instance; }
 
 	public void GoalChecked(GameObject goal)
 	{
@@ -59,6 +54,50 @@ public class GameRuleManager : MonoBehaviour {
         _ui.GoalImageChange(goal, false);
         AudioManager.Instance().GoalExited();
 	}
+
+    void StatusChanged()
+    {
+        if (status == GameStatus.Paused)
+        {
+            GameUIManager.Instance().GamePaused();
+            InputController.Instance().GamePaused();
+        }
+        else if (status == GameStatus.Playing)
+        {
+            GameUIManager.Instance().GamePlaying();
+            InputController.Instance().GamePlaying();
+        }
+        else if (status == GameStatus.Defeated)
+        {
+            //GameUIManager.Instance().GameDefeated();
+            InputController.Instance().GameDefeated();
+        }
+        else
+        {
+            SetGameObject(true);
+            AllChecked = false;
+            GameUIManager.Instance().GameCleared();
+            InputController.Instance().GameCleared();
+
+        }
+
+    }
+
+    public void EscapePushed()
+    {
+        if(status == GameStatus.Playing)
+        {
+            SetStatus(GameStatus.Paused);
+        }
+        else if(status == GameStatus.Paused)
+        {
+            SetStatus(GameStatus.Playing);
+        }
+        else
+        {
+            //TBD
+        }
+    }
     public void GamePause() { SetGameObject(false); }
     public void GameDepause() { SetGameObject(true); }
 
@@ -79,7 +118,9 @@ public class GameRuleManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        SingletonInitialize(this);
+        if (instance == null)
+            instance = this;
+        else return;
         MapGenerator mapGenerator = GetComponent<MapGenerator>();
         int gameLv1 = MainData.Instance().gameLv1;
         int gameLv2 = MainData.Instance().gameLv2;
@@ -98,14 +139,8 @@ public class GameRuleManager : MonoBehaviour {
     {
         if (!AllChecked) return;
 
-        if (AllCheckedTime > 1f)            //Script executed when game ends.
-        {
-            Debug.Log("The game is end!");
-            FindObjectOfType<GameUIManager>().LoadGameEndUI();
-            SetGameObject(true);
-            AllChecked = false;
-            InputController.Instance().PauseInput();
-        }
+        if (AllCheckedTime > 1f)
+            SetStatus(GameStatus.Cleared);
         else AllCheckedTime += Time.deltaTime;
     }
 }
