@@ -48,9 +48,10 @@ public class GameUIManager : MonoBehaviour {
 			goalImgs[i] = Instantiate(goalImg, canvas.transform);
             HangImgOnScreen(GameRuleManager.Instance().GetGoalObject(i), goalImgs[i].GetComponent<Image>());
 		}
+        Transform Walls = canvas.transform.Find("Walls");
         for (int i = 0; i < wallImgs.Length; i++)
         {
-            wallImgs[i] = Instantiate(wallImg[Random.Range(0,6)], canvas.transform);
+            wallImgs[i] = Instantiate(wallImg[Random.Range(0, 6)], Walls);
             HangImgOnScreen(GameRuleManager.Instance().GetWallObject(i), wallImgs[i].GetComponent<Image>());
         }
         foreach(GameObject obj in goalImgs)
