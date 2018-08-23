@@ -19,7 +19,7 @@ public class GameUIManager : MonoBehaviour {
     [SerializeField]
     Sprite GoalClearImage;
     [SerializeField]
-    Sprite WallImage;
+    Sprite[] WallImage;
     [SerializeField]
     Sprite Wall_movableImage;
     [SerializeField]
@@ -41,6 +41,7 @@ public class GameUIManager : MonoBehaviour {
 		YText = transform.Find("YRateText").GetComponent<Text>();
 		ZText = transform.Find("ZRateText").GetComponent<Text>();
 		canvas = this.gameObject;
+        Random.InitState(65819200);
 
         foreach(GameObject obj in GameRuleManager.Instance().GetBalls())
             CreateHanger(obj, BallImage, new Vector3(0.6f, 0.6f, 0.6f));
@@ -49,7 +50,7 @@ public class GameUIManager : MonoBehaviour {
             CreateHanger(obj, GoalImage, new Vector3(1, 1.5f, 1));
 
         foreach(GameObject obj in GameRuleManager.Instance().GetWalls())
-            CreateHanger(obj, WallImage, new Vector3(0.75f, 0.75f, 0.75f));
+            CreateHanger(obj, WallImage[Random.Range(0, WallImage.Length)], new Vector3(0.75f, 0.75f, 0.75f));
 	}
 
     void CreateHanger(GameObject target, Sprite sprite, Vector3 scale)
