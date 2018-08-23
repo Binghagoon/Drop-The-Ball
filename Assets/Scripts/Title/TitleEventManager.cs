@@ -20,13 +20,18 @@ public class TitleEventManager : MonoBehaviour {
         if (instance == null) instance = this;
         else Destroy(this);
 
+	}
+
+    private void Start()
+    {
         if (MainData.Instance().isPlaying)
         {
             OnClickGameStart(null);
             ChangeLevelImage(MainData.Instance().gameLv1);
         }
-	}
-    
+        
+    }
+
     public void OnClickGameStart(Button b)
     {
         Title.SetActive(false);

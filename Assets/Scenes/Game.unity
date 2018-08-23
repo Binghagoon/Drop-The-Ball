@@ -542,17 +542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebc18d6fb95c63469baf9ca5a82476f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballImg: {fileID: 1777210694046834, guid: 99a654def0e93374c93a9f530c421fb6, type: 2}
-  goalImg: {fileID: 1223352990189696, guid: 277d1793dd712d34b85545ddb449bf86, type: 2}
-  goalClearImg: {fileID: 1428951583348634, guid: 13735a470d3bdc041aeb8ed376b991b6,
-    type: 2}
-  wallImg:
-  - {fileID: 1294647223207518, guid: 3e6202ac3070e184ab28865c02e0a02c, type: 2}
-  - {fileID: 1145166739205544, guid: 948bf27db1312584298bfb76add65a86, type: 2}
-  - {fileID: 1577228222759844, guid: bc284eb740ba1a14da8fb9357f1f5115, type: 2}
-  - {fileID: 1047275288594584, guid: 348f2be54f20ccb41ab150cb51fb3521, type: 2}
-  - {fileID: 1444611661648066, guid: a7b2f9f628cec92408012a951b0ce21c, type: 2}
-  - {fileID: 1872782971740404, guid: 0dc8a581dc242274a8d5740f4f3ef753, type: 2}
+  Sprite2D: {fileID: 1294647223207518, guid: a50afdc5ccb57db49b17b9c1c81f5f41, type: 2}
+  BallImage: {fileID: 21300000, guid: 733bd67c3183e544d9d310dd5115e2e4, type: 3}
+  GoalImage: {fileID: 21300000, guid: 12d26530b2bb16445a99bf484102ee10, type: 3}
+  GoalClearImage: {fileID: 21300000, guid: 295b41eaf0ca4f647aa4a52e05330124, type: 3}
+  WallImage: {fileID: 21300000, guid: 42635a1e51c166646a4bc8652efc98cb, type: 3}
+  Wall_movableImage: {fileID: 0}
+  TrapImage: {fileID: 0}
   fin: {fileID: 823949806}
   defeat: {fileID: 0}
   escape: {fileID: 834844692}

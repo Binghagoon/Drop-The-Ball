@@ -8,19 +8,22 @@ public class GameUIManager : MonoBehaviour {
 
     private static GameUIManager instance;
 	Text XText, YText, ZText;		//Shows forces of accelerometer
-	GameObject canvas;		//The canvas which attaches it
+	public static GameObject canvas;		//The canvas which attaches it
 
-	[SerializeField]
-	GameObject ballImg;
-	[SerializeField]
-	GameObject goalImg;
-	[SerializeField]
-	GameObject goalClearImg;
-	[SerializeField]
-	GameObject[] wallImg;
-	GameObject[] ballImgs;
-	GameObject[] goalImgs;
-	GameObject[] wallImgs;
+    [SerializeField]
+    GameObject Sprite2D;
+    [SerializeField]
+    Sprite BallImage;
+    [SerializeField]
+    Sprite GoalImage;
+    [SerializeField]
+    Sprite GoalClearImage;
+    [SerializeField]
+    Sprite WallImage;
+    [SerializeField]
+    Sprite Wall_movableImage;
+    [SerializeField]
+    Sprite TrapImage;
 
 	[SerializeField]
 	GameObject fin;
@@ -38,60 +41,27 @@ public class GameUIManager : MonoBehaviour {
 		YText = transform.Find("YRateText").GetComponent<Text>();
 		ZText = transform.Find("ZRateText").GetComponent<Text>();
 		canvas = this.gameObject;
-		ballImgs = new GameObject[GameRuleManager.Instance().GetBallNum()];
-		goalImgs = new GameObject[GameRuleManager.Instance().GetBallNum()];
-		wallImgs = new GameObject[GameRuleManager.Instance().GetWallObject().Length];
 
-		for (int i = 0; i < ballImgs.Length; i++)
-		{
-			ballImgs[i] = Instantiate(ballImg, canvas.transform);
-			goalImgs[i] = Instantiate(goalImg, canvas.transform);
-            HangImgOnScreen(GameRuleManager.Instance().GetGoalObject(i), goalImgs[i].GetComponent<Image>());
-		}
-        Transform Walls = canvas.transform.Find("Walls");
-        for (int i = 0; i < wallImgs.Length; i++)
-        {
-            wallImgs[i] = Instantiate(wallImg[Random.Range(0, 6)], Walls);
-            HangImgOnScreen(GameRuleManager.Instance().GetWallObject(i), wallImgs[i].GetComponent<Image>());
-        }
-        foreach(GameObject obj in goalImgs)
-            obj.transform.SetAsLastSibling();
-	}
-	
-	void Update () {
-		for (int i = 0; i < ballImgs.Length; i++)
-        {
-            HangImgOnScreen(GameRuleManager.Instance().GetBallObject(i), ballImgs[i].GetComponent<Image>());
-        }
+        foreach(GameObject obj in GameRuleManager.Instance().GetBalls())
+            CreateHanger(obj, BallImage, new Vector3(0.6f, 0.6f, 0.6f));
 
+        foreach(GameObject obj in GameRuleManager.Instance().GetGoals())
+            CreateHanger(obj, GoalImage, new Vector3(1, 1.5f, 1));
+
+        foreach(GameObject obj in GameRuleManager.Instance().GetWalls())
+            CreateHanger(obj, WallImage, new Vector3(0.75f, 0.75f, 0.75f));
 	}
 
-    Vector3 GetImagePos(GameObject obj)
+    void CreateHanger(GameObject target, Sprite sprite, Vector3 scale)
     {
-		Vector3 objPos = Camera.main.WorldToViewportPoint(obj.transform.position);
-		RectTransform CanvasRect = canvas.GetComponent <RectTransform>();
-		objPos.x = objPos.x * CanvasRect.sizeDelta.x - CanvasRect.sizeDelta.x * 0.5f;
-		objPos.y = objPos.y * CanvasRect.sizeDelta.y - CanvasRect.sizeDelta.y * 0.5f;
-        return objPos;
+            GameObject hanger = Instantiate(Sprite2D, canvas.transform) as GameObject;
+            hanger.GetComponent<ImageHanger>().
+                Initialize(target, sprite, scale);
     }
-
-	void HangImgOnScreen(GameObject obj, Image img)
-	{
-		img.rectTransform.anchoredPosition = GetImagePos(obj);
-	}
 
     public void GoalImageChange(GameObject goal, bool isEntered)
     {
-        Vector3 pos3 = GetImagePos(goal);
-        Vector2 pos2 = new Vector2(pos3.x, pos3.y);
-        foreach(GameObject obj in goalImgs)
-        {
-            Image img = obj.GetComponent<Image>();
-            if(img.rectTransform.anchoredPosition == pos2)
-                img.sprite = isEntered ? 
-                    goalClearImg.GetComponent<Image>().sprite : 
-                    goalImg.GetComponent<Image>().sprite;
-        }
+        CreateHanger(goal, isEntered ? GoalClearImage : GoalImage, new Vector3(1, 1.5f, 1));
     }
 	
 	const string prefix = "rate: ";

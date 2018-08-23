@@ -295,6 +295,7 @@
     <Compile Include="Assets\Scripts\Game\GameEvent.cs" />
     <Compile Include="Assets\Scripts\Game\GameRuleManager.cs" />
     <Compile Include="Assets\Scripts\Game\GameUIManager.cs" />
+    <Compile Include="Assets\Scripts\Game\ImageHanger.cs" />
     <Compile Include="Assets\Scripts\Game\InputController.cs" />
     <Compile Include="Assets\Scripts\Game\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerMovementManager.cs" />

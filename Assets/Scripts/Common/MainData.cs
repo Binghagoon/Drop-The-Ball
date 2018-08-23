@@ -16,7 +16,7 @@ public class MainData : MonoBehaviour {
 
     public static MainData Instance() { return instance; }
 
-    private void Awake()
+    void Awake()
     {
         if (instance == null) 
         {

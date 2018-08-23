@@ -15,6 +15,10 @@ public class GameRuleManager : MonoBehaviour {
     bool AllChecked = false;
     GameUIManager _ui;
 
+    public GameObject[] GetBalls() { return balls; }
+    public GameObject[] GetGoals() { return goals; }
+    public GameObject[] GetWalls() { return walls; }
+
 	public int GetBallNum() { return ballNum; }
 	public GameObject GetBallObject(int index) { return balls[index]; }
 	public GameObject[] GetBallObject() { return balls; }
